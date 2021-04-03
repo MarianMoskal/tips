@@ -1,0 +1,65 @@
+@mixin font-silo ($weight, $size, $lh, $ls, $color) {
+  @if $weight {
+    font-weight: $weight;
+  }
+  @if $size {
+    font-size: $size;
+  }
+  @if $lh {
+    line-height: $lh;
+  }
+  @if $ls {
+    letter-spacing: $ls;
+  }
+  @if $color {
+    color: $color;
+  }
+}
+
+а это для медиа запросов
+
+@mixin media-min ($min-width, $max-width) {
+  @media screen and (min-width: $min-width * 1px) and (max-width: $max-width * 1px ) {
+    @content;
+  }
+}
+
+@mixin media ($min-mobile-screen, $max-mobile-screen, $min-mobile-screen, $max-mobile-screen, $min-mobile-screen, $max-mobile-screen )
+
+@mixin for-size($range) {
+  $min-mobile-screen;
+  $max-mobile-screen;
+  $min-tablet-screen;
+  $max-tablet-screen;
+  $min-desktop-screen;
+  $max-desktop-screen;
+
+  @if $range == phone-only {
+    @media (max-width: #{$phone-upper-boundary - 1}) { @content; }
+  } @else if $range == tablet-portrait-up {
+    @media (min-width: $phone-upper-boundary) { @content; }
+  } @else if $range == tablet-landscape-up {
+    @media (min-width: $tablet-portrait-upper-boundary) { @content; }
+  } @else if $range == desktop-up {
+    @media (min-width: $tablet-landscape-upper-boundary) { @content; }
+  } @else if $range == big-desktop-up {
+    @media (min-width: $desktop-upper-boundary) { @content; }
+  }
+}
+
+
+@mixin for-size($size) {
+  @if $size == $min-mobile {
+    @media (min-width: $min-mobile-screen) { @content; }
+  } @else if $size == $max-mobile {
+    @media (max-width: $min-mobile-screen) { @content; }
+  } @else if $size ==  $min-tablet {
+    @media (min-width:  $min-tablet-screen) { @content; }
+  } @else if $size ==  $max-tablet {
+    @media (max-width:  $max-tablet-screen) { @content; }
+  } @else if $size ==  $min-desktop {
+    @media (min-width:  $min-desktop-screen) { @content; }
+  } @else if $size ==  $max-desktop {
+    @media (min-width:  $min-desktop-screen) { @content; }
+  }
+}
